@@ -17,7 +17,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
 		<div className="product-page ">
 			<div className="container p-3 lg:p-5 m-auto max-w-screen-xl">
 				<div className="product-top py-10 flex flex-col gap-5 lg:flex-row lg:gap-10">
-					<div className="product-images w-1/2">
+					<div className="product-images w-full lg:w-1/2">
 						<GalleryImage product={product} />
 					</div>
 					<div className="product-info flex-1 flex flex-col gap-3">

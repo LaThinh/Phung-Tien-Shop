@@ -36,10 +36,10 @@ export default function CategoryProduct({ categoryProduct }: { categoryProduct: 
 				</h3>
 				<Image
 					alt={categoryProduct.name || "Title"}
-					className="aspect-[8/6] object-cover"
-					height={300}
+					className="w-full aspect-[8/6] object-cover"
+					height={360}
 					src={categoryProduct.categoryImage.url}
-					width={400}
+					width={540}
 				/>
 				<p className="category-desc">{categoryProduct.description}</p>
 				<Button
@@ -76,9 +76,14 @@ export default function CategoryProduct({ categoryProduct }: { categoryProduct: 
 									/>
 								</Link>
 								<div className="flex flex-1 flex-col justify-between w-full min-h-20 items-start justify-center gap-1 p-3">
-									<h3 className="text-sm font-bold line-clamp-2">
-										{product.name}
-									</h3>
+									<Link
+										className="hover:text-primary-500"
+										href={`/product/${product.slug}`}
+									>
+										<h3 className="text-sm font-bold line-clamp-2">
+											{product.name}
+										</h3>
+									</Link>
 									<p className="text-md text-orange-500 font-bold dark:text-gray-400">
 										Giá: {product.price} vnđ
 									</p>

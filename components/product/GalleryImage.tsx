@@ -14,10 +14,12 @@ export default function GalleryImage({ product }: { product: Product }) {
 
 	return (
 		<div className="product-gallery flex flex-col gap-4">
-			<div className="main-image w-full aspect-square bg-gray-200">
+			<div className="main-image w-full m-auto max-w-screen-sm aspect-square rounded-lg overflow-hidden bg-gray-200">
 				<Image
+					removeWrapper
 					alt={mainImage.fileName || product.name || "Product Images"}
-					className="w-full aspect-square"
+					className="w-full  aspect-square"
+					radius="sm"
 					src={mainImage.url}
 				/>
 			</div>
