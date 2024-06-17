@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.widget {
+	@apply w-full flex flex-col;
+}
+.widget .widget-title {
+	@apply font-bold text-xl rounded-t-lg bg-slate-200 px-3 py-2;
+}
+
+.widget .widget-content {
+	@apply border border-gray-300 rounded-b-lg p-3;
+}

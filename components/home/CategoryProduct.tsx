@@ -15,7 +15,7 @@ export default function CategoryProduct({ categoryProduct }: { categoryProduct: 
 	const [products, setProducts] = useState<Product[]>([]);
 
 	const getProducts = async () => {
-		const results = await getProductsCategorySlug(categoryProduct.slug);
+		const results = await getProductsCategorySlug(categoryProduct.slug, 6);
 
 		console.log(results);
 
@@ -45,7 +45,7 @@ export default function CategoryProduct({ categoryProduct }: { categoryProduct: 
 				<Button
 					as={Link}
 					color="primary"
-					href={categoryProduct.slug || "/"}
+					href={`/category/${categoryProduct.slug}` || "/"}
 					size="lg"
 					variant="ghost"
 				>

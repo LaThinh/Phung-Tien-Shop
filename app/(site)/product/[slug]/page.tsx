@@ -1,8 +1,9 @@
 import React from "react";
 
-import { getProductBySlug } from "@/libs/graph/graphCategory";
+import { getProductBySlug, getProductsCategorySlug } from "@/libs/graph/graphCategory";
 import { title } from "@/components/primitives";
 import GalleryImage from "@/components/product/GalleryImage";
+import ProductRelated from "@/components/product/ProductRelated";
 
 export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
 	const slug = params.slug;
@@ -13,6 +14,11 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
 		return;
 	}
 
+	const pCategory =
+		product.categories && product.categories.length > 0 ? product.categories[0] : null;
+
+	const products = pCategory ? await getProductsCategorySlug(pCategory?.slug, 12) : null;
+
 	return (
 		<div className="product-page ">
 			<div className="container p-3 lg:p-5 m-auto max-w-screen-xl">
@@ -22,8 +28,9 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
 					</div>
 					<div className="product-info flex-1 flex flex-col gap-3">
 						<h1
-							className={` ${title({ color: "blue" })} product-name mt-5 text-xl 
-              lg:!text-3xl !leading-loose font-bold text-primary-500 capitalize`}
+							className={` ${title({ color: "blue" })} 
+							product-name mt-5 text-xl font-bold text-primary-500 capitalize
+              				lg:!text-3xl !leading-loose `}
 						>
 							{product?.name?.toLowerCase()}
 						</h1>
@@ -38,6 +45,13 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
 							</div>
 						</div>
 					</div>
+				</div>
+				<div className="product-bottom">
+					{products && (
+						<div className="product-related">
+							<ProductRelated products={products} />
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

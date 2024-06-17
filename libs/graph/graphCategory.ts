@@ -28,6 +28,28 @@ export const getCategories = async () => {
 	if (categories) return categories;
 };
 
+export const getCategoryInfo = async (slug: string) => {
+	const GET_CATEGORY_INFO = gql`
+		query getCategoryInfo {
+			category(where: { slug: "${slug}" }) {
+				id
+				name
+				categoryBanner {
+					fileName
+					url
+					width
+					height
+				}
+				description
+			}
+		}
+	`;
+
+	const { category }: { category: Category } = await request(graphEndpoint, GET_CATEGORY_INFO);
+
+	if (category) return category;
+};
+
 export const getProductsCategorySlug = async (slug: string) => {
 	const GET_PRODUCTS_IN_CATEGORY_SLUG = gql`
 		query GetProducts {
@@ -71,6 +93,11 @@ export const getProductBySlug = async (slug: string) => {
 					fileName
 				}
 				description
+				categories {
+					id
+					name
+					slug
+				}
 			}
 		}
 	`;
