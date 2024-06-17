@@ -1,10 +1,22 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
+import { Category } from "@/graphql/graphql";
 import { getCategories } from "@/libs/graph/graphCategory";
 
-export default async function CategoryMenu() {
-	const categories = await getCategories();
+export default function CategoryMenu() {
+	const [categories, setCategories] = useState<Category[]>([]);
+
+	const getCategory = async () => {
+		const resCategory = await getCategories();
+
+		if (resCategory) setCategories(resCategory);
+	};
+
+	useEffect(() => {
+		getCategory();
+	}, []);
 
 	return (
 		<div className="category-menu widget">

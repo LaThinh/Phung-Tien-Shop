@@ -50,10 +50,10 @@ export const getCategoryInfo = async (slug: string) => {
 	if (category) return category;
 };
 
-export const getProductsCategorySlug = async (slug: string) => {
+export const getProductsCategorySlug = async (slug: string, limit: number) => {
 	const GET_PRODUCTS_IN_CATEGORY_SLUG = gql`
 		query GetProducts {
-			products(where: { categories_some: { slug: "${slug}" } }, last: 6) {
+			products(where: { categories_some: { slug: "${slug}" } }, last: ${limit}) {
 				id
 				name
 				price
